@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct DefaultProjectApp: App {
+    @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false  // Храним состояние авторизации
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                MainTabView()  // Показать MainTabView после авторизации
+            } else {
+                LoginView()  // Показать экран авторизации
+            }
         }
     }
 }
